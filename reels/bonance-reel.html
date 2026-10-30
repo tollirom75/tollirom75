@@ -1,0 +1,287 @@
+<title>Réel « La Famille Bonance »</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;700&family=Caveat:wght@600&display=swap">
+<style>
+/* Layout: phone-sized reel player on the left, the production sheet (script, caption, shot notes) on the right; stacks on phones. */
+:root{
+  --bg:#EDF0F2;          /* ciel gris de la baie de Somme */
+  --paper:#FFFFFF;
+  --ink:#1E2A36;
+  --muted:#5B6874;
+  --line:#D3D9DE;
+  --accent:#C99A2E;      /* moutarde « Clem » */
+  --screen:#F6F3EE;      /* fond du réel : laine écrue */
+  --screen-ink:#22303C;
+  --display:"Young Serif", Georgia, "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hand:"Caveat", "Comic Sans MS", cursive;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#141B22;--paper:#1C252E;--ink:#E7ECEF;--muted:#9AA6B0;--line:#2E3a45;--accent:#E0B44C;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#141B22;--paper:#1C252E;--ink:#E7ECEF;--muted:#9AA6B0;--line:#2E3a45;--accent:#E0B44C;color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.55 var(--body);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:32px 56px}
+.wrap{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:48px;align-items:start}
+@media (max-width:820px){.wrap{grid-template-columns:minmax(0,1fr);gap:32px}}
+header.top{max-width:1080px;margin:0 auto 28px}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+h1{font:400 clamp(30px,4.4vw,46px)/1.08 var(--display);margin:6px 0 10px;text-wrap:balance}
+.lede{max-width:62ch;color:var(--muted);margin:0}
+
+/* ---------- Reel player ---------- */
+.player{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+@media (max-width:820px){.player{position:static;max-width:380px;margin:0 auto;width:100%}}
+.phone{position:relative;aspect-ratio:9/16;max-width:100%;border-radius:28px;overflow:hidden;background:var(--screen);color:var(--screen-ink);
+  box-shadow:0 1px 0 var(--line),0 24px 60px -24px rgba(20,30,40,.45);isolation:isolate}
+.bars{position:absolute;inset:12px 12px auto;display:flex;gap:4px;z-index:5}
+.bars span{flex:1;height:3px;border-radius:2px;background:rgba(34,48,60,.18);overflow:hidden}
+.bars i{display:block;height:100%;width:0;background:var(--screen-ink)}
+.handle{position:absolute;top:24px;left:14px;z-index:5;display:flex;align-items:center;gap:8px;font:700 12px var(--body)}
+.handle b{width:26px;height:26px;border-radius:50%;background:#C99A2E;display:grid;place-items:center;color:#fff;font:400 13px var(--display)}
+.scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 26px 70px;text-align:center;opacity:0;transition:opacity .35s}
+.scene.on{opacity:1}
+.big{font:400 clamp(26px,7.4vw,34px)/1.12 var(--display);text-wrap:balance;margin:0}
+.small{font:500 15px/1.4 var(--body);margin:14px 0 0;color:#4C5A66}
+.sub{position:absolute;left:18px;right:18px;bottom:54px;z-index:4;text-align:center;font:700 14px/1.35 var(--body);color:#fff;
+  text-shadow:0 1px 3px rgba(0,0,0,.55)}
+.sub span{background:rgba(20,28,36,.72);padding:3px 8px;border-radius:4px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.side{position:absolute;right:10px;bottom:110px;z-index:4;display:flex;flex-direction:column;gap:16px;font:700 11px var(--body);color:var(--screen-ink);align-items:center}
+.side div{display:flex;flex-direction:column;align-items:center;gap:2px}
+.side svg{width:26px;height:26px}
+
+/* viral clip placeholder */
+.clip{width:100%;flex:1;border-radius:16px;background:repeating-linear-gradient(135deg,#DAD3C8 0 10px,#E4DED4 10px 20px);display:grid;place-items:center;color:#5B5246;font:600 13px/1.4 var(--body);padding:16px;position:relative}
+.clip .views{position:absolute;top:12px;left:12px;background:#22303C;color:#fff;padding:4px 10px;border-radius:999px;font:700 12px var(--body)}
+
+/* knitted blanket */
+.blanket{--c:#E9C9C4;position:relative;width:74%;aspect-ratio:60/80;border-radius:6px;background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.14) 0 3px,rgba(0,0,0,.05) 3px 6px),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.10) 0 4px,rgba(0,0,0,.04) 4px 8px),var(--c);
+  box-shadow:0 18px 30px -18px rgba(0,0,0,.45)}
+.blanket::before{content:"";position:absolute;inset:-9px;border-radius:12px;z-index:-1;
+  background:radial-gradient(circle at 50% 50%,var(--c) 0 5px,transparent 5.5px) 0 0/12px 12px;filter:brightness(.93)}
+.tag{position:absolute;bottom:14%;right:-8%;background:#fff;color:#22303C;padding:4px 14px 6px;border-radius:3px;transform:rotate(-6deg);
+  font:600 30px/1 var(--hand);box-shadow:0 4px 10px -4px rgba(0,0,0,.35)}
+.tag small{display:block;font:500 11px/1.2 var(--body);letter-spacing:.06em;text-transform:uppercase;color:#6B7680;margin-top:2px}
+.drop{animation:drop .55s cubic-bezier(.2,1.4,.4,1) both}
+@keyframes drop{from{transform:translateY(-40px) rotate(-4deg) scale(.92);opacity:0}to{transform:none;opacity:1}}
+
+/* crochet scene */
+.hook{width:80%;aspect-ratio:1;position:relative}
+.hook .blanket{width:100%;aspect-ratio:1;--c:#C99A2E}
+.stitch{stroke-dasharray:600;stroke-dashoffset:600}
+.scene.on .stitch{animation:sew 3.2s ease-out forwards}
+@keyframes sew{to{stroke-dashoffset:0}}
+
+.specs{display:grid;gap:10px;width:100%;margin-top:18px}
+.specs div{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px dashed #C9C1B4;padding:6px 2px;font:500 15px var(--body)}
+.specs b{font:400 20px var(--display)}
+.cta-name{font:600 44px/1 var(--hand);color:#B0831E}
+.addr{font:500 13px/1.5 var(--body);color:#4C5A66;margin-top:16px}
+
+.controls{display:flex;gap:10px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+button{font:600 14px var(--body);border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:9px 16px;border-radius:999px;cursor:pointer}
+button:hover{border-color:var(--accent)}
+button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.time{font:500 13px var(--body);color:var(--muted);text-align:center;margin-top:8px;font-variant-numeric:tabular-nums}
+
+/* ---------- Production sheet ---------- */
+.sheet{display:grid;gap:36px;min-width:0}
+.sheet h2{font:400 24px/1.2 var(--display);margin:0 0 12px}
+.sheet p{max-width:65ch;margin:0 0 10px}
+.note{border-left:3px solid var(--accent);padding:10px 14px;background:var(--paper);border-radius:0 8px 8px 0;font-size:15px;max-width:65ch}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
+th,td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)}
+th{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+tr:last-child td{border-bottom:0}
+td.t{font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--muted);font-weight:700}
+tr.active td{background:color-mix(in srgb,var(--accent) 14%,transparent)}
+.swatches{display:flex;flex-wrap:wrap;gap:8px}
+.sw{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:4px 12px 4px 4px;font-size:14px}
+.sw i{width:22px;height:22px;border-radius:50%;border:1px solid rgba(0,0,0,.1)}
+.sw b{font:600 19px/1 var(--hand)}
+.caption{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:16px;white-space:pre-wrap;font-size:15px;max-width:65ch}
+ul{margin:0;padding-left:20px;max-width:65ch}
+li{margin-bottom:6px}
+@media (prefers-reduced-motion:reduce){.drop,.scene.on .stitch{animation:none;stroke-dashoffset:0}.scene{transition:none}}
+</style>
+
+<header class="top">
+  <div class="eyebrow">Les Petites Laines de Bonance · proposition de réel</div>
+  <h1>La Famille Bonance</h1>
+  <p class="lede">Chez Bonance, chaque couverture porte un prénom : Nini, Clem, Pippa, Lulu… Le réel part de là. On fait l'appel de la famille comme une présentation de personnages, rythmée sur le beat, et on accroche le spectateur avec la vidéo qui a déjà dépassé le million de vues.</p>
+</header>
+
+<div class="wrap">
+  <section class="player" aria-label="Aperçu du réel">
+    <div class="phone" id="phone">
+      <div class="bars" id="bars"></div>
+      <div class="handle"><b>B</b> lespetiteslainesdebonance</div>
+
+      <!-- 1. Hook -->
+      <div class="scene" data-d="3000">
+        <div class="clip"><span class="views">▶ 1,2 M</span>[ 1,5 s de votre vidéo virale :<br>le plan le plus fort, en plein cadre ]</div>
+      </div>
+      <!-- 2. Transition -->
+      <div class="scene" data-d="2200">
+        <p class="big">Vous êtes plus d'un million à l'avoir vue.</p>
+        <p class="small">Il est temps de vous présenter la famille.</p>
+      </div>
+      <!-- 3. Roll call -->
+      <div class="scene" data-d="7200" id="roll">
+        <div class="blanket drop" id="bk"><div class="tag" id="tg">Nini<small>rose pâle</small></div></div>
+      </div>
+      <!-- 4. Crochet -->
+      <div class="scene" data-d="3400">
+        <div class="hook">
+          <div class="blanket"></div>
+          <svg viewBox="0 0 100 100" style="position:absolute;inset:-6%;width:112%;height:112%" aria-hidden="true">
+            <rect class="stitch" x="4" y="4" width="92" height="92" rx="6" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-dasharray="2 3" pathLength="600"/>
+          </svg>
+        </div>
+        <p class="big" style="margin-top:22px">Bordée au crochet, à la main.</p>
+      </div>
+      <!-- 5. Specs -->
+      <div class="scene" data-d="3200">
+        <p class="big">Une pièce unique</p>
+        <div class="specs">
+          <div><span>Laine</span><b>100 % mérinos</b></div>
+          <div><span>Format</span><b>60 × 80 cm</b></div>
+          <div><span>Lavage</span><b>30° laine</b></div>
+          <div><span>Fabrication</span><b>France</b></div>
+        </div>
+      </div>
+      <!-- 6. CTA -->
+      <div class="scene" data-d="3600">
+        <p class="small" style="margin:0 0 6px">Et ton bébé, il ressemble à qui ?</p>
+        <p class="cta-name">Nini, Clem ou Martin ?</p>
+        <p class="big" style="margin-top:14px;font-size:24px">Dis-le-nous en commentaire 👇</p>
+        <p class="addr">lespetiteslainesdebonance.fr<br>116 rue de Courcelles, Paris 17e</p>
+      </div>
+
+      <div class="side" aria-hidden="true">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.4-9.3-9A5.4 5.4 0 0 1 12 6a5.4 5.4 0 0 1 9.3 6c-2.3 4.6-9.3 9-9.3 9z"/></svg>48,2 k</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>1 304</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3 11 14M22 3l-7 19-4-8-8-4z"/></svg>9 870</div>
+      </div>
+      <div class="sub" id="sub"><span>…</span></div>
+    </div>
+    <div class="controls">
+      <button id="play" type="button">Pause</button>
+      <button id="restart" type="button">Revoir depuis le début</button>
+    </div>
+    <div class="time" id="time">0,0 s / 22,6 s</div>
+  </section>
+
+  <div class="sheet">
+    <section>
+      <h2>L'idée</h2>
+      <p>Les couvertures ont déjà des prénoms : c'est le trait le plus attachant de la marque, et on le met au centre. Chaque couverture entre dans le cadre comme un personnage, avec son étiquette brodée. Le spectateur se prend au jeu et choisit « la sienne ».</p>
+      <p>La fin pose une question simple (« ton bébé ressemble à qui ? »). Elle pousse aux commentaires, et les commentaires font remonter le réel dans l'algorithme.</p>
+      <div class="note">Je n'ai pas pu ouvrir le site ni le compte Instagram depuis mon environnement : l'accès réseau est bloqué. Les prénoms, coloris, le prix et l'adresse viennent des pages produits indexées par la recherche web. Le premier plan est un emplacement : il faut y mettre l'extrait de la vidéo à plus d'1 M de vues.</div>
+    </section>
+
+    <section>
+      <h2>Découpage plan par plan</h2>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Temps</th><th>Image</th><th>Texte à l'écran</th><th>Son</th></tr></thead>
+          <tbody id="shots">
+            <tr><td class="t">0 – 3 s</td><td>Extrait de la vidéo virale : son plan le plus fort, recadré en 9:16.</td><td>« 1,2 M de vues… »</td><td>Son d'origine de la vidéo virale, coupé net.</td></tr>
+            <tr><td class="t">3 – 5 s</td><td>Mains qui plient une couverture sur un drap en lin, lumière naturelle.</td><td>« Vous êtes plus d'un million à l'avoir vue. Il est temps de vous présenter la famille. »</td><td>Le beat démarre.</td></tr>
+            <tr><td class="t">5 – 12 s</td><td>L'appel : 9 couvertures lancées une à une dans le cadre, sur le beat. Plan fixe en plongée, étiquette prénom écrite à la main.</td><td>Prénom et coloris, en gros.</td><td>Un « pop » à chaque couverture.</td></tr>
+            <tr><td class="t">12 – 16 s</td><td>Gros plan macro : le crochet fait la bordure, maille après maille.</td><td>« Bordée au crochet, à la main. »</td><td>Son réel du crochet, beat en fond.</td></tr>
+            <tr><td class="t">16 – 19 s</td><td>Bébé (ou poupon) enveloppé, vu de dessus. Puis la couverture pliée dans son papier de soie.</td><td>100 % mérinos · 60 × 80 cm · 30° laine · France</td><td>Beat.</td></tr>
+            <tr><td class="t">19 – 22,6 s</td><td>Les 9 couvertures en éventail sur le lit, travelling lent.</td><td>« Et ton bébé, il ressemble à qui ? Nini, Clem ou Martin ? »</td><td>Fin du beat sur la dernière image (boucle propre).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>La famille, dans l'ordre de l'appel</h2>
+      <div class="swatches" id="swatches"></div>
+    </section>
+
+    <section>
+      <h2>Légende à publier</h2>
+      <div class="caption" id="caption">Vous êtes plus d'un million à avoir vu notre dernière vidéo 🥹 Alors voici toute la famille.
+
+Nini, Clem, Pippa, Lulu, Martin, Arthur, Paulo, Anto et Camou : chaque couverture a son prénom, et chacune est une pièce unique, en laine mérinos, bordée au crochet à la main, en France.
+
+👉 Et ton bébé, il ressemble à qui ? Dis-le-nous en commentaire.
+
+📍 116 rue de Courcelles, Paris 17e · lespetiteslainesdebonance.fr
+
+#cadeaunaissance #madeinfrance #couverturebebe #lainemerinos #faitmain #crochet #listedenaissance #babyshower #artisanatfrancais</div>
+      <div class="controls" style="justify-content:flex-start"><button id="copy" type="button">Copier la légende</button></div>
+    </section>
+
+    <section>
+      <h2>Conseils de tournage</h2>
+      <ul>
+        <li>Réutiliser le décor, la lumière et le son de la vidéo virale : les abonnés qui l'ont aimée reconnaissent tout de suite l'univers.</li>
+        <li>L'appel des prénoms se tourne en une seule prise fixe, téléphone sur pied en plongée. On lance les couvertures hors champ et on coupe au montage sur chaque temps fort du beat.</li>
+        <li>Les étiquettes prénom écrites à la main sur du kraft deviennent un signe de reconnaissance, réutilisable sur les colis.</li>
+        <li>Garder le texte à l'écran au-dessus du dernier tiers de l'image, pour qu'il ne passe pas sous la légende Instagram.</li>
+        <li>Variante pour la suite : une série « Un prénom, une couverture » avec un épisode par coloris, et un appel aux parents dont le bébé porte le même prénom.</li>
+      </ul>
+    </section>
+  </div>
+</div>
+
+<script>
+(function(){
+  const fam=[
+    ["Nini","rose pâle","#EBC9C5"],["Clem","moutarde","#C99A2E"],["Pippa","orange","#DE8445"],
+    ["Lulu","joli vert","#9DBF8E"],["Martin","vert kaki","#7C7F4F"],["Arthur","bleu gris","#8C9DAD"],
+    ["Paulo","taupe","#9C8C7E"],["Anto","bordeaux","#7D2E38"],["Camou","neige","#F1EEE8"]];
+  const subs=["« Ce moment-là, vous l'avez vu plus d'un million de fois »","Le beat démarre","Voici la famille Bonance","Chaque maille, à la main","Le cadeau de naissance qu'on garde","Ton bébé ressemble à qui ?"];
+  const scenes=[...document.querySelectorAll('.scene')];
+  const durs=scenes.map(s=>+s.dataset.d);
+  const total=durs.reduce((a,b)=>a+b,0);
+  const bars=document.getElementById('bars');
+  durs.forEach(()=>{const s=document.createElement('span');s.appendChild(document.createElement('i'));bars.appendChild(s)});
+  const fills=[...bars.querySelectorAll('i')];
+  const rows=[...document.querySelectorAll('#shots tr')];
+  const bk=document.getElementById('bk'),tg=document.getElementById('tg'),sub=document.getElementById('sub').firstElementChild;
+  const sw=document.getElementById('swatches');
+  fam.forEach(f=>{const d=document.createElement('div');d.className='sw';d.innerHTML='<i style="background:'+f[2]+'"></i><b>'+f[0]+'</b>'+f[1];sw.appendChild(d)});
+
+  let t=0,playing=true,last=null,cur=-1,curFam=-1;
+  function setFam(i){
+    if(i===curFam)return;curFam=i;
+    bk.style.setProperty('--c',fam[i][2]);
+    tg.innerHTML=fam[i][0]+'<small>'+fam[i][1]+'</small>';
+    bk.classList.remove('drop');void bk.offsetWidth;bk.classList.add('drop');
+  }
+  function render(){
+    let acc=0,idx=0;
+    for(;idx<durs.length;idx++){if(t<acc+durs[idx])break;acc+=durs[idx]}
+    if(idx>=durs.length)idx=durs.length-1;
+    const local=t-acc;
+    if(idx!==cur){scenes.forEach((s,i)=>s.classList.toggle('on',i===idx));rows.forEach((r,i)=>r.classList.toggle('active',i===idx));sub.textContent=subs[idx];cur=idx;curFam=-1}
+    fills.forEach((f,i)=>f.style.width=(i<idx?100:i>idx?0:Math.min(100,local/durs[i]*100))+'%');
+    if(idx===2)setFam(Math.min(fam.length-1,Math.floor(local/(durs[2]/fam.length))));
+    document.getElementById('time').textContent=(t/1000).toFixed(1).replace('.',',')+' s / '+(total/1000).toFixed(1).replace('.',',')+' s';
+  }
+  function tick(ts){
+    if(last!==null&&playing){t+=ts-last;if(t>=total)t=0}
+    last=ts;render();requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+  const pb=document.getElementById('play');
+  pb.onclick=()=>{playing=!playing;pb.textContent=playing?'Pause':'Lecture'};
+  document.getElementById('restart').onclick=()=>{t=0;cur=-1;playing=true;pb.textContent='Pause'};
+  document.getElementById('copy').onclick=function(){
+    const txt=document.getElementById('caption').textContent,b=this;
+    const done=()=>{b.textContent='Légende copiée';setTimeout(()=>b.textContent='Copier la légende',1800)};
+    const sel=()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('caption'));const s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Texte sélectionné, faites Copier'};
+    try{navigator.clipboard.writeText(txt).then(done,sel)}catch(e){sel()}
+  };
+})();
+</script>
